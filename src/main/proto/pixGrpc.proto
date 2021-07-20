@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.erivelton.pix";
+option java_outer_classname = "PixGrpc";
+option objc_class_prefix = "HLW";
+
+package br.com.erivelton.pix;
+
+import 'google/protobuf/timestamp.proto';
+
+service PixGrpcService {
+  rpc registrarPix (PixRequest) returns (PixResponse) {}
+}
+
+message PixRequest {
+  string clienteId = 1;
+  string valorChave = 2;
+  TipoChave tipoChave = 3;
+  TipoConta tipoConta = 4;
+}
+
+message PixResponse {
+  int64 PixID = 1;
+  string clienteId = 2;
+}
+
+service RemovePixGrpcService{
+  rpc remova(PixRemovidoRequisicao) returns (PixRemovidoResposta){}
+}
+
+message PixRemovidoRequisicao {
+  int64 pixId = 1;
+  string clienteId = 2;
+}
+
+message PixRemovidoResposta {
+  string mensagem = 1;
+}
+
+service BuscaGrpcService {
+  rpc buscaPix (DadosPixRequisicao) returns (DadosPixResposta) {}
+
+  rpc buscaTodosPixCliente (InformacaoIdClienteRequisicao) returns (DadosPixGeralResposta) {}
+}
+
+message DadosPixGeralResposta {
+  message PixGeralResposta{
+    string pixId = 1;
+    string clienteId = 2;
+    TipoChave tipoChave = 3;
+    string valorChave = 4;
+    TipoConta tipoConta = 5;
+    google.protobuf.Timestamp momento = 6;
+  }
+  repeated PixGeralResposta pixGeralResposta = 1;
+}
+
+message InformacaoIdClienteRequisicao {
+  string clienteId = 1;
+}
+
+message DadosPixRequisicao {
+  int64 pixId = 1;
+  string clienteId = 2;
+  string valorChave = 3;
+}
+
+message DadosPixResposta {
+  string pixId = 1;
+  string clienteId = 2;
+  TipoChave tipoChave = 3;
+  string valorChave = 4;
+  string nome = 5;
+  string cpf = 6;
+  DadosConta dadosConta = 7;
+  google.protobuf.Timestamp momento = 8;
+}
+
+message DadosConta {
+  string instituicao = 1;
+  string agencia = 2;
+  string numero = 3;
+  TipoContaBcb tipoContaBcb = 4;
+}
+
+enum TipoContaBcb{
+  DESCONHECIDA = 0;
+  CACC = 1;
+  SVGS = 2;
+}
+
+enum TipoChave{
+  CHAVE_DESCONHECIDA = 0;
+  CPF = 1;
+  PHONE = 2;
+  EMAIL = 3;
+  RANDOM = 4;
+}
+
+enum TipoConta{
+  CONTA_DESCONHECIDA = 0;
+  CONTA_POUPANCA = 1;
+  CONTA_CORRENTE = 2;
+}
