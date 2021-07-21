@@ -29,6 +29,8 @@ class TratamentoExcecoesHandler :
         val (httpStatus, message) = when (exception.status.code) {
             Status.ALREADY_EXISTS.code -> Pair(HttpStatus.UNPROCESSABLE_ENTITY, "Chave pix já foi cadastrada")
 
+            Status.NOT_FOUND.code -> Pair(HttpStatus.NOT_FOUND, exception.message)
+
             Status.INVALID_ARGUMENT.code -> Pair(HttpStatus.BAD_REQUEST, exception.message)
 
             Status.FAILED_PRECONDITION.code -> Pair(HttpStatus.NOT_FOUND, "Cliente não foi encontrado na api do itaú")
