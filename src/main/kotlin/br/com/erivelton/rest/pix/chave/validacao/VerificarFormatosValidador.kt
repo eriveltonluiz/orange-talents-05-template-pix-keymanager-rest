@@ -16,6 +16,6 @@ class VerificarFormatosValidador : ConstraintValidator<VerificarFormatos, NovaCh
         if (value == null) {
             return false
         }
-        return value.retornarValidacaoChaves(context)
+        return value.retornarValidacaoChaves()
     }
 }

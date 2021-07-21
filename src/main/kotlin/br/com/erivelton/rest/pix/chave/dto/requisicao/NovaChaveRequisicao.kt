@@ -13,13 +13,13 @@ import javax.validation.constraints.Size
 @VerificarFormatos
 data class NovaChaveRequisicao(
     @field:NotBlank val clienteId: String,
+    @field:Size(min = 0, max = 77) val valorChave: String,
     @field:NotBlank val tipoChave: TipoChave,
-    @field:Size(min = 0, max = 77) val valorChave: String?,
     @field:NotBlank val tipoConta: TipoConta,
 ) {
 
-    fun retornarValidacaoChaves(context: ConstraintValidatorContext): Boolean {
-        return tipoChave.validarChaves(valorChave, context)
+    fun retornarValidacaoChaves(): Boolean {
+        return tipoChave.validarChaves(valorChave)
     }
 
     fun paraServidorGrpc(): PixRequest {

@@ -3,6 +3,7 @@ package br.com.erivelton.rest.pix.chave.controle
 import br.com.erivelton.pix.PixGrpcServiceGrpc
 import br.com.erivelton.rest.pix.chave.dto.requisicao.NovaChaveRequisicao
 import br.com.erivelton.rest.pix.chave.dto.resposta.ChaveCriadaResposta
+import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Post
@@ -17,10 +18,10 @@ class ChaveControle(
 ) {
 
     @Post("/api/chaves")
-    fun registra(@Valid @Body novaChaveRequisicao: NovaChaveRequisicao): ChaveCriadaResposta {
+    fun registra(@Valid @Body novaChaveRequisicao: NovaChaveRequisicao): HttpResponse<ChaveCriadaResposta> {
         val requisicao = novaChaveRequisicao.paraServidorGrpc()
 
         val resposta = grpcClient.registrarPix(requisicao)
-        return ChaveCriadaResposta(resposta.pixID, resposta.clienteId)
+        return HttpResponse.created(HttpResponse.uri("/api/chaves/${resposta.pixID}"))
     }
 }

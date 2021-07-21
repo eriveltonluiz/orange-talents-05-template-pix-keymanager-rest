@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class GrpcClientFactory {
 
     @Singleton
-    fun pixClientStub(@GrpcChannel("registrospix") channel: ManagedChannel) : PixGrpcServiceGrpc.PixGrpcServiceBlockingStub{
+    fun registraPixClientStub(@GrpcChannel("registrospix") channel: ManagedChannel) : PixGrpcServiceGrpc.PixGrpcServiceBlockingStub{
         return PixGrpcServiceGrpc.newBlockingStub(channel)
     }
 }

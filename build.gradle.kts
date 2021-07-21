@@ -45,6 +45,10 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers")
     implementation("io.micronaut:micronaut-validation")
     implementation("org.hibernate:hibernate-validator:6.1.6.Final")
+    testImplementation("org.mockito:mockito-inline:3.8.0")
+
+    testAnnotationProcessor("io.micronaut:micronaut-inject-java")
+    testImplementation("io.micronaut:micronaut-http-client")
 
     implementation("io.micronaut.xml:micronaut-jackson-xml")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
