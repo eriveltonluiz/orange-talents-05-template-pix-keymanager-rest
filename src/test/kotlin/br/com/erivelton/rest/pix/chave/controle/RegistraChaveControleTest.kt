@@ -19,14 +19,13 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.BDDMockito
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @MicronautTest
-internal class ChaveControleTest {
+internal class RegistraChaveControleTest {
 
     @field:Inject
     @field:Client("/")

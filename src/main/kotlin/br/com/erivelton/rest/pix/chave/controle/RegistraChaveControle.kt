@@ -12,9 +12,8 @@ import javax.validation.constraints.NotBlank
 
 @Validated
 @Controller("/api/chaves")
-class ChaveControle(
-    @Inject private val registraPixGrpcClient: PixGrpcServiceGrpc.PixGrpcServiceBlockingStub,
-    @Inject private val removePixGrpcClient: RemovePixGrpcServiceGrpc.RemovePixGrpcServiceBlockingStub
+class RegistraChaveControle(
+    @Inject private val registraPixGrpcClient: PixGrpcServiceGrpc.PixGrpcServiceBlockingStub
 ) {
 
     @Post
@@ -25,15 +24,4 @@ class ChaveControle(
         return HttpResponse.created(HttpResponse.uri("/api/chaves/${resposta.pixID}"))
     }
 
-    @Delete("/{pixId}")
-    fun deleta(@PathVariable pixId: Long, @NotBlank(message = "Não pode ser nulo ou vazio") clienteId: String): String{
-        val resposta = removePixGrpcClient.remova(
-            PixRemovidoRequisicao.newBuilder()
-                .setClienteId(clienteId)
-                .setPixId(pixId)
-                .build()
-        )
-
-        return resposta.mensagem
-    }
 }

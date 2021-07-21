@@ -8,15 +8,15 @@ import io.micronaut.grpc.annotation.GrpcChannel
 import javax.inject.Singleton
 
 @Factory
-class GrpcClientFactory {
+class GrpcClientFactory(@GrpcChannel("pixGrpc") val channel: ManagedChannel) {
 
     @Singleton
-    fun registraPixClientStub(@GrpcChannel("pixGrpc") channel: ManagedChannel) : PixGrpcServiceGrpc.PixGrpcServiceBlockingStub{
+    fun registraPixClientStub() : PixGrpcServiceGrpc.PixGrpcServiceBlockingStub{
         return PixGrpcServiceGrpc.newBlockingStub(channel)
     }
 
     @Singleton
-    fun removePixClientFactory(@GrpcChannel("pixGrpc") channel: ManagedChannel) : RemovePixGrpcServiceGrpc.RemovePixGrpcServiceBlockingStub{
+    fun removePixClientFactory() : RemovePixGrpcServiceGrpc.RemovePixGrpcServiceBlockingStub{
         return RemovePixGrpcServiceGrpc.newBlockingStub(channel)
     }
 }

@@ -38,19 +38,7 @@ class TratamentoExcecoesHandler :
             else -> Pair(HttpStatus.INTERNAL_SERVER_ERROR, "Não foi possível processar a requisição com o servidor GRPC")
         }
 
-//        if(exception.status.code == Status.ALREADY_EXISTS.code)
-//            status = HttpResponse.unprocessableEntity()
-//
-//        else if(exception.status.code == Status.INVALID_ARGUMENT.code)
-//            status = HttpResponse.badRequest<Any>()
-
         return HttpResponse.status<JsonError>(httpStatus).body(JsonError(message))
-//        errorResponseProcessor.processResponse(
-//            ErrorContext.builder(request)
-//                .cause(exception)
-//                .errorMessage(message)
-//                .build(), status
-//        )
     }
 
 }
