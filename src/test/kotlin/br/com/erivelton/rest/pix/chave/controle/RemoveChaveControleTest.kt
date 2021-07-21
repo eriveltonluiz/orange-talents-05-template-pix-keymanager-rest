@@ -2,7 +2,7 @@ package br.com.erivelton.rest.pix.chave.controle
 
 import br.com.erivelton.pix.PixRemovidoResposta
 import br.com.erivelton.pix.RemovePixGrpcServiceGrpc
-import br.com.erivelton.rest.pix.chave.GrpcClientFactory
+import br.com.erivelton.rest.pix.shared.config.factory.GrpcClientFactory
 import br.com.erivelton.rest.pix.shared.config.handlers.TratamentoExcecoesHandler
 import io.grpc.Status
 import io.grpc.StatusRuntimeException
@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.BDDMockito
 import org.mockito.Mockito
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 

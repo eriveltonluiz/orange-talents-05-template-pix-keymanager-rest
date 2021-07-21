@@ -1,5 +1,6 @@
-package br.com.erivelton.rest.pix.chave
+package br.com.erivelton.rest.pix.shared.config.factory
 
+import br.com.erivelton.pix.BuscaGrpcServiceGrpc
 import br.com.erivelton.pix.PixGrpcServiceGrpc
 import br.com.erivelton.pix.RemovePixGrpcServiceGrpc
 import io.grpc.ManagedChannel
@@ -18,5 +19,10 @@ class GrpcClientFactory(@GrpcChannel("pixGrpc") val channel: ManagedChannel) {
     @Singleton
     fun removePixClientFactory() : RemovePixGrpcServiceGrpc.RemovePixGrpcServiceBlockingStub{
         return RemovePixGrpcServiceGrpc.newBlockingStub(channel)
+    }
+
+    @Singleton
+    fun buscaPixClientFactory() : BuscaGrpcServiceGrpc.BuscaGrpcServiceBlockingStub{
+        return BuscaGrpcServiceGrpc.newBlockingStub(channel)
     }
 }

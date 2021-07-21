@@ -1,7 +1,7 @@
 package br.com.erivelton.rest.pix.chave.controle
 
 import br.com.erivelton.pix.*
-import br.com.erivelton.rest.pix.chave.GrpcClientFactory
+import br.com.erivelton.rest.pix.shared.config.factory.GrpcClientFactory
 import br.com.erivelton.rest.pix.chave.dto.requisicao.NovaChaveRequisicao
 import br.com.erivelton.rest.pix.chave.enums.TipoChave
 import br.com.erivelton.rest.pix.chave.enums.TipoConta
