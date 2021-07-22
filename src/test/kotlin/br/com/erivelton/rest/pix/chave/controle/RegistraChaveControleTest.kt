@@ -74,7 +74,7 @@ internal class RegistraChaveControleTest {
         val resposta = TratamentoExcecoesHandler().handle(HttpRequest.GET<Any>("/"), exception)
 
         with(resposta){
-            assertNotNull(this)
+            assertNotNull(body())
             assertEquals(HttpStatus.NOT_FOUND, status)
             assertEquals("Cliente não foi encontrado na api do itaú", (body() as JsonError).message)
         }

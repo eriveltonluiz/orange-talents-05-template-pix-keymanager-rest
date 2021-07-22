@@ -66,7 +66,7 @@ internal class RemoveChaveControleTest{
         val respostaRest = TratamentoExcecoesHandler().handle(HttpRequest.GET<Any>("/"), exception)
 
         with(respostaRest){
-            assertNotNull(this)
+            assertNotNull(body())
             assertEquals(HttpStatus.NOT_FOUND, status)
             assertEquals("NOT_FOUND: Chave pix não foi encontrada ou usuário inválido!!", (body() as JsonError).message)
         }
