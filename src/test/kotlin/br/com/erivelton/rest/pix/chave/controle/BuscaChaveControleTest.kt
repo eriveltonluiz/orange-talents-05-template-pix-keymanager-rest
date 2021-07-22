@@ -1,8 +1,7 @@
 package br.com.erivelton.rest.pix.chave.controle
 
 import br.com.erivelton.pix.*
-import br.com.erivelton.rest.pix.chave.dto.resposta.DadosChavePixResposta
-import br.com.erivelton.rest.pix.chave.dto.resposta.DadosContaResposta
+import br.com.erivelton.rest.pix.chave.dto.resposta.DetalhesChavePixResposta
 import br.com.erivelton.rest.pix.shared.config.factory.GrpcClientFactory
 import br.com.erivelton.rest.pix.shared.config.handlers.TratamentoExcecoesHandler
 import com.google.protobuf.Timestamp
@@ -69,7 +68,7 @@ internal class BuscaChaveControleTest{
             ).build()
 
         BDDMockito.given(grpcClient.buscaPix(Mockito.any())).willReturn(respostaGrpc)
-        val get = HttpRequest.GET<DadosChavePixResposta>("/api/chaves/1/clientes/$clienteIdTeste")
+        val get = HttpRequest.GET<DetalhesChavePixResposta>("/api/chaves/1/clientes/$clienteIdTeste")
         val respostaFinal = client.toBlocking().exchange(get, Any::class.java)
 
 
