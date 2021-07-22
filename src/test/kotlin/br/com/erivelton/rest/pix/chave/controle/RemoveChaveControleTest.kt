@@ -43,17 +43,14 @@ internal class RemoveChaveControleTest{
 
     @Test
     internal fun `deve excluir chave pix`() {
-        println("teste1")
         val resposta = PixRemovidoResposta.newBuilder()
             .setMensagem("Chave removida com sucesso")
             .build()
-        BDDMockito.given(removeGrpcClient.remova(Mockito.any())).willReturn(resposta)
-        println("teste2")
 
+        BDDMockito.given(removeGrpcClient.remova(Mockito.any())).willReturn(resposta)
         val pixId:Long = 1L
 
         val delete = HttpRequest.DELETE<Any>("/api/chaves/${pixId}/clientes/$clienteIdTeste")
-
         val respostaRest = client.toBlocking().exchange(delete, String::class.java)
 
         with(respostaRest){
