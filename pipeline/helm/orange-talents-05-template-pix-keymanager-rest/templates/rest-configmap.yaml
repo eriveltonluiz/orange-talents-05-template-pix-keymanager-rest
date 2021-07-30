@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configMap-rest
+spec:
+  data:
+    ENDPOINT_GRPC: {{ Values.application.ENDPOINT_GRPC }}
